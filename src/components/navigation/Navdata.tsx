@@ -31,4 +31,8 @@ export const Navdata = [
     title: "Location",
     path: "/location",
   },
+  {
+    title: "Company",
+    path: "/company",
+  },
 ];
