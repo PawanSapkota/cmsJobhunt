@@ -2,9 +2,12 @@ import * as yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiOutlineFolderView } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { LocationContext } from "@/hoc/ContextApi/LocationContext";
+import { TechnologiesContext } from "@/hoc/ContextApi/TechnologiesContext";
+import { CategoryContext } from "@/hoc/ContextApi/CategoryContext";
 
 const schema = yup.object().shape({
   Job_title: yup.string().required("Job Title is required."),
@@ -38,11 +41,16 @@ const salaryData = [
 
 const AddJob = () => {
   const [value, setValue] = useState("");
+  const { tableRenderLocation } = useContext(LocationContext);
+  const { tableRenderCategory } = useContext(CategoryContext);
+  console.log(tableRenderCategory);
+
+  console.log(tableRenderLocation);
   return (
     <div className="w-10/12 mx-auto mt-4">
       <Link to={"/alljobs"}>
-        <div className="cursor-pointer">
-          <h1 className="font-bold flex gap-2 items-center">
+        <div className="cursor-pointer bg-[#1d2531] inline-block rounded p-2">
+          <h1 className="font-bold flex gap-2 items-center text-white">
             View All <AiOutlineFolderView className="text-xl" />
           </h1>
         </div>
@@ -62,7 +70,6 @@ const AddJob = () => {
         validationSchema={schema}
         onSubmit={(Values, { resetForm }) => {
           console.log(Values);
-          console.log("name");
           resetForm();
         }}
       >
@@ -70,15 +77,15 @@ const AddJob = () => {
           return (
             <Form
               onSubmit={handleSubmit}
-              className="mt-4 flex flex-col gap-4 w-full mx-auto shadow-lg p-6 shadow-gray-400 bg-white "
+              className="mt-4 flex flex-col gap-4 w-full mx-auto  p-6  bg-white "
             >
-              <label className=" font-bold text-2xl text-center   ">Form</label>
+              {/* <label className=" font-bold text-2xl text-center   ">Form</label> */}
               <div className="  grid grid-cols-2 gap-4 ">
                 <div className="flex flex-col gap-1">
                   <label className="font-semibold">Enter Job Title</label>
                   <Field
                     type="text"
-                    className="p-2 border w-full  outline-none shadow-lg rounded-xl "
+                    className="p-2 border w-full  outline-none  rounded "
                     placeholder=""
                     name="Job_title"
                   />
@@ -92,7 +99,7 @@ const AddJob = () => {
                   <label className="font-semibold ">Enter Job Code</label>
                   <Field
                     type="text"
-                    className="p-2  border w-full  outline-none shadow-lg rounded-xl "
+                    className="p-2  border w-full  outline-none  rounded "
                     placeholder=""
                     name="Job_code"
                   />
@@ -107,7 +114,7 @@ const AddJob = () => {
 
                   <Field
                     type="date"
-                    className="p-2  border w-full  outline-none shadow-lg rounded-xl "
+                    className="p-2  border w-full  outline-none  rounded "
                     placeholder=""
                     name="Date_posted"
                   />
@@ -121,7 +128,7 @@ const AddJob = () => {
                   <label className="font-semibold ">Enter Company Name</label>
                   <Field
                     type="text"
-                    className="p-2  border w-full  outline-none shadow-lg rounded-xl "
+                    className="p-2  border w-full  outline-none  rounded "
                     placeholder=" "
                     name="Company"
                   />
@@ -135,7 +142,7 @@ const AddJob = () => {
                   <label className="font-semibold ">Enter Salary Range</label>
                   <Field
                     as="select"
-                    className="p-2  border w-full  outline-none shadow-lg rounded-xl "
+                    className="p-2  border w-full  outline-none  rounded "
                     placeholder=""
                     name="Salary_range"
                   >
@@ -153,11 +160,17 @@ const AddJob = () => {
                 <div>
                   <label className="font-semibold ">Enter Categories </label>
                   <Field
+                    as="select"
                     type="text"
-                    className="p-2  border w-full  outline-none shadow-lg rounded-xl "
+                    className="p-2  border w-full  outline-none  rounded "
                     placeholder=""
                     name="Categories"
-                  />
+                  >
+                    <option value={""}>----</option>
+                    {tableRenderCategory.map((val, i) => {
+                      return <option key={i}>{val.name}</option>;
+                    })}
+                  </Field>
                   <ErrorMessage
                     className="text-red-500"
                     name="Categories"
@@ -167,11 +180,17 @@ const AddJob = () => {
                 <div className="flex flex-col gap-1">
                   <label className="font-semibold ">Enter Location</label>
                   <Field
+                    as="select"
                     type="text"
-                    className="p-2  border w-full  outline-none shadow-lg rounded-xl "
+                    className="p-2  border w-full  outline-none  rounded "
                     placeholder=""
                     name="Location"
-                  />
+                  >
+                    <option value={""}>----</option>
+                    {tableRenderLocation.map((val, i) => {
+                      return <option key={i}>{val.name}</option>;
+                    })}
+                  </Field>
                   <ErrorMessage
                     className="text-red-500"
                     name="Location"
@@ -182,7 +201,7 @@ const AddJob = () => {
                   <label className="font-semibold ">Enter Expiry Date</label>
                   <Field
                     type="date"
-                    className="p-2  border w-full  outline-none shadow-lg rounded-xl "
+                    className="p-2  border w-full  outline-none  rounded "
                     placeholder=""
                     name="Expiry_date"
                   />

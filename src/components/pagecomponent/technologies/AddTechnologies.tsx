@@ -34,7 +34,7 @@ const AddTechnologies = () => {
                     <Field
                       type="text"
                       className="p-2 rounded border "
-                      placeholder="Enter Technologies"
+                      placeholder="Enter Technologies" 
                       name="name"
                     />
                     <ErrorMessage

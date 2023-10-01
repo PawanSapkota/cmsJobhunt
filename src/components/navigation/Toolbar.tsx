@@ -8,6 +8,7 @@ import { RxCross2 } from "react-icons/rx";
 import { GoPerson } from "react-icons/go";
 import { FiSettings } from "react-icons/fi";
 import profile from "../../assets/profile.jpg";
+import { Link } from "react-router-dom";
 
 const Toolbar = () => {
   const [profileIsOpen, setProfileIsOpen] = useState<boolean>(false);
@@ -110,12 +111,14 @@ const Toolbar = () => {
                   </h1>
                 </div>
 
-                <div className="hover:bg-gray-200 hover:transition-all hover:duration-700 delay-200 ease-in-out ">
-                  <h1 className="flex gap-2 items-center p-2 text-sm font-semibold">
-                    <AiOutlineLogout />
-                    Logout
-                  </h1>
-                </div>
+                <Link to="/login">
+                  <div className="hover:bg-gray-200 hover:transition-all hover:duration-700 delay-200 ease-in-out ">
+                    <h1 className="flex gap-2 items-center p-2 text-sm font-semibold">
+                      <AiOutlineLogout />
+                      Logout
+                    </h1>
+                  </div>
+                </Link>
               </div>
             )}
           </div>

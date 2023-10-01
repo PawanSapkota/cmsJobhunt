@@ -1,10 +1,16 @@
+import LocationContextApi from "@/hoc/ContextApi/LocationContext";
 import AddJob from "./AddJob";
+import CategoryContextApi from "@/hoc/ContextApi/CategoryContext";
 
 const Job = () => {
   return (
-    <div>
-      <AddJob />
-    </div>
+    <CategoryContextApi>
+      <LocationContextApi>
+        <div>
+          <AddJob />
+        </div>
+      </LocationContextApi>
+    </CategoryContextApi>
   );
 };
 

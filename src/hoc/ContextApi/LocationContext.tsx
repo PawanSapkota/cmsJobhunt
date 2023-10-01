@@ -25,11 +25,15 @@ const LocationContextApi = ({ children }: Props) => {
 
   const postLocation = (values: { name: string }, resetform: any) => {
     try {
-      axios.post(`http://localhost:4002/location/`, values).then((res) => {
-        console.log(res);
-        setChange(!change);
-        resetform();
-      });
+      axios
+        .post(`http://localhost:4002/location/`, values, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res);
+          setChange(!change);
+          resetform();
+        });
     } catch (err) {
       console.log(err);
     }
@@ -37,10 +41,12 @@ const LocationContextApi = ({ children }: Props) => {
 
   const getLocation = useCallback(() => {
     try {
-      axios.get(`http://localhost:4002/location/`).then((res) => {
-        console.log(res);
-        setTableRenderLocation([...res.data.Locations]);
-      });
+      axios
+        .get(`http://localhost:4002/location/`, { withCredentials: true })
+        .then((res) => {
+          console.log(res);
+          setTableRenderLocation([...res.data.Locations]);
+        });
     } catch (err) {
       console.log(err);
     }
@@ -50,10 +56,14 @@ const LocationContextApi = ({ children }: Props) => {
 
   const deleteLocation = (id: number) => {
     try {
-      axios.delete(`http://localhost:4002/location/${id}`).then((res) => {
-        console.log(res);
-        setChange(!change);
-      });
+      axios
+        .delete(`http://localhost:4002/location/${id}`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res);
+          setChange(!change);
+        });
     } catch (err) {
       console.log(err);
     }
@@ -64,7 +74,8 @@ const LocationContextApi = ({ children }: Props) => {
       axios
         .patch(
           `http://localhost:4002/location/${currentLocation[0].id}`,
-          values
+          values,
+          { withCredentials: true }
         )
         .then((res) => {
           console.log(res);

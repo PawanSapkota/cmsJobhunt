@@ -3,12 +3,13 @@ import Sidebar from "@/components/navigation/Sidebar";
 import Toolbar from "@/components/navigation/Toolbar";
 
 import React from "react";
+import { Outlet } from "react-router-dom";
 
 type PropsType = {
   children: React.ReactNode;
 };
 
-const Layout = ({ children }: PropsType) => {
+const Layout = () => {
   return (
     <div className="grid grid-cols-12 ">
       <div className="col-span-2 bg-[#263544] text-[#B7C0CD]">
@@ -16,7 +17,7 @@ const Layout = ({ children }: PropsType) => {
       </div>
       <div className="col-span-10 bg-[#f2f7fb] ">
         <Toolbar />
-        {children}
+        <Outlet />
       </div>
       {/* <Footer /> */}
     </div>

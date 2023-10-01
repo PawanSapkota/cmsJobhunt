@@ -24,11 +24,15 @@ const JobtypeApi = ({ children }: Props) => {
 
   const postJobType = (values: { type: string }, resetform: any) => {
     try {
-      axios.post(`http://localhost:4002/jobtype/`, values).then((res) => {
-        console.log(res);
-        setChange(!change);
-        resetform();
-      });
+      axios
+        .post(`http://localhost:4002/jobtype/`, values, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res);
+          setChange(!change);
+          resetform();
+        });
     } catch (err) {
       console.log(err);
     }
@@ -36,10 +40,12 @@ const JobtypeApi = ({ children }: Props) => {
 
   const getJobType = useCallback(() => {
     try {
-      axios.get(`http://localhost:4002/jobtype/`).then((res) => {
-        console.log(res);
-        setTableRenderJobType([...res.data.jobtypes]);
-      });
+      axios
+        .get(`http://localhost:4002/jobtype/`, { withCredentials: true })
+        .then((res) => {
+          console.log(res);
+          setTableRenderJobType([...res.data.jobtypes]);
+        });
     } catch (err) {
       console.log(err);
     }
@@ -49,10 +55,14 @@ const JobtypeApi = ({ children }: Props) => {
 
   const deleteJobType = (id: number) => {
     try {
-      axios.delete(`http://localhost:4002/jobtype/${id}`).then((res) => {
-        console.log(res);
-        setChange(!change);
-      });
+      axios
+        .delete(`http://localhost:4002/jobtype/${id}`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res);
+          setChange(!change);
+        });
     } catch (err) {
       console.log(err);
     }
@@ -61,7 +71,13 @@ const JobtypeApi = ({ children }: Props) => {
   const patchJobType = (values: { type: string }, resetform: any) => {
     try {
       axios
-        .patch(`http://localhost:4002/jobtype/${currentJobType[0].id}`, values)
+        .patch(
+          `http://localhost:4002/jobtype/${currentJobType[0].id}`,
+          values,
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
           console.log(res);
           setCurrentJobType([]);

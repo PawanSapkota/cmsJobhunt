@@ -10,7 +10,7 @@ import SocialMediaIcons from "./SocialMediaIcons";
 const schema = yup.object().shape({
   Company_name: yup.string().required("Company Name is required."),
   ceo: yup.string().required("Ceo is required."),
-  overview_description: yup.string().required("Description is required."),
+
   Company_benefits: yup.string().required("Company Benefits is required."),
   sub_title: yup.string().required("Sub Title is required."),
   jobs: yup.string().required("Job Name is required."),
@@ -23,18 +23,8 @@ const CompanyForm = () => {
   console.log(tableRenderTechnologies);
   const [isOptionOpen, setOptionOpen] = useState(false);
 
-  // const optionRef = useRef<HTMLInputElement>(null);
-
   const handleOption = () => {
-    // alert("sfa");
     setOptionOpen(!isOptionOpen);
-    // if (optionRef.current) {
-    //   if (isOptionOpen) {
-    //     optionRef.current.blur();
-    //   } else {
-    //     optionRef.current.focus();
-    //   }
-    // }
   };
   const formats = [
     "header",
@@ -59,7 +49,6 @@ const CompanyForm = () => {
           estd: "",
           total_employee: "",
           Company_benefits: "",
-          overview_description: "",
           sub_title: "",
           jobs: "",
           technologies: [],
@@ -74,16 +63,16 @@ const CompanyForm = () => {
           return (
             <Form
               onSubmit={handleSubmit}
-              className="mt-4 flex flex-col gap-4 w-full mx-auto shadow-lg p-6 shadow-gray-400 bg-white "
+              className="mt-4 flex flex-col gap-4 w-full mx-auto  p-6   "
             >
-              <label className=" font-semibold  text-center text-2xl">
-                Form
-              </label>
               <div className="w-full  grid grid-cols-2 gap-6 ">
                 <div>
+                  <label className="font-semibold mb-2">
+                    Enter Company Name
+                  </label>
                   <Field
                     type="text"
-                    className="px-3 py-2 border w-full outline-none rounded-full shadow-lg "
+                    className="px-3 py-2 border w-full outline-none rounded  "
                     placeholder="Enter Company Name"
                     name="Company_name"
                   />
@@ -95,9 +84,10 @@ const CompanyForm = () => {
                 </div>
 
                 <div>
+                  <label className="font-semibold mb-2">Enter Ceo Name</label>
                   <Field
                     type="text"
-                    className="px-3 py-2 border w-full outline-none rounded-full shadow-lg "
+                    className="px-3 py-2 border w-full outline-none rounded  "
                     placeholder="Enter Ceo Name"
                     name="ceo"
                   />
@@ -109,9 +99,12 @@ const CompanyForm = () => {
                 </div>
 
                 <div>
+                  <label className="font-semibold mb-2">
+                    Enter Establish Date
+                  </label>
                   <Field
                     type="date"
-                    className="px-3 py-2 border w-full outline-none rounded-full shadow-lg "
+                    className="px-3 py-2 border w-full outline-none rounded  "
                     placeholder="Enter Founded Date"
                     name="estd"
                   />
@@ -121,10 +114,12 @@ const CompanyForm = () => {
                     component={"div"}
                   />
                 </div>
+
                 <div>
+                  <label className="font-semibold mb-2">Enter Job Name</label>
                   <Field
                     type="text"
-                    className="px-3 py-2 border w-full outline-none rounded-full shadow-lg "
+                    className="px-3 py-2 border w-full outline-none rounded  "
                     placeholder="Enter Job Name"
                     name="jobs"
                   />
@@ -134,10 +129,14 @@ const CompanyForm = () => {
                     component={"div"}
                   />
                 </div>
+
                 <div>
+                  <label className="font-semibold mb-2">
+                    Enter Total Employee
+                  </label>
                   <Field
                     type="text"
-                    className="px-3 py-2 border w-full outline-none rounded-full shadow-lg "
+                    className="px-3 py-2 border w-full outline-none rounded  "
                     placeholder="Enter Total Employee"
                     name="total_employee"
                   />
@@ -147,10 +146,14 @@ const CompanyForm = () => {
                     component={"div"}
                   />
                 </div>
+
                 <div>
+                  <label className="font-semibold mb-2">
+                    Enter Company Benefits
+                  </label>
                   <Field
                     type="text"
-                    className="px-3 py-2 border w-full outline-none rounded-full shadow-lg "
+                    className="px-3 py-2 border w-full outline-none rounded  "
                     placeholder="Enter Company Benefits"
                     name="Company_benefits"
                   />
@@ -160,10 +163,12 @@ const CompanyForm = () => {
                     component={"div"}
                   />
                 </div>
+
                 <div>
+                  <label className="font-semibold mb-2">Enter Sub Title</label>
                   <Field
                     type="text"
-                    className="px-3 py-2 border w-full outline-none rounded-full shadow-lg "
+                    className="px-3 py-2 border w-full outline-none rounded  "
                     placeholder="Enter Sub Title"
                     name="sub_title"
                   />
@@ -251,6 +256,7 @@ const CompanyForm = () => {
                   <SocialMediaIcons />
                 </div>
               </div>
+
               <div>
                 <button
                   type="submit"
