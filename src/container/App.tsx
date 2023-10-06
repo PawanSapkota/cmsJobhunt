@@ -1,6 +1,7 @@
 import Login from "@/components/pagecomponent/login/Login";
 import Registration from "@/components/pagecomponent/login/Registration";
 import Layout from "@/hoc/Layout";
+import Benefit from "@/pages/benefit/Benefit";
 import Category from "@/pages/category/Category";
 import Company from "@/pages/company/Company";
 import Dashboard from "@/pages/dashboard/Dashboard";
@@ -27,6 +28,8 @@ const App = () => {
           <Route path="/job" element={<Job />} />
           <Route path="/company" element={<Company />} />
           <Route path="/alljobs" element={<ViewAllJobs />} />
+          <Route path="/benefit" element={<Benefit />} />
+          <Route path="/company" element={<Company />} />
         </Route>
 
         <Route path="/login" element={<Login />} />

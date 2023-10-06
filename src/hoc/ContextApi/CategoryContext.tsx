@@ -24,11 +24,15 @@ const CategoryContextApi = ({ children }: Props) => {
 
   const postCategory = (values: { name: string }, resetform: any) => {
     try {
-      axios.post(`http://localhost:4002/category/`, values).then((res) => {
-        console.log(res);
-        setChange(!change);
-        resetform();
-      });
+      axios
+        .post(`http://localhost:4002/category/`, values, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res);
+          setChange(!change);
+          resetform();
+        });
     } catch (err) {
       console.log(err);
     }
@@ -36,10 +40,12 @@ const CategoryContextApi = ({ children }: Props) => {
 
   const getCategory = useCallback(() => {
     try {
-      axios.get(`http://localhost:4002/category/`).then((res) => {
-        console.log(res);
-        setTableRenderCategory([...res.data.categories]);
-      });
+      axios
+        .get(`http://localhost:4002/category/`, { withCredentials: true })
+        .then((res) => {
+          console.log(res);
+          setTableRenderCategory([...res.data.categories]);
+        });
     } catch (err) {
       console.log(err);
     }
@@ -48,10 +54,14 @@ const CategoryContextApi = ({ children }: Props) => {
 
   const deleteCategory = (id: number) => {
     try {
-      axios.delete(`http://localhost:4002/category/${id}`).then((res) => {
-        console.log(res);
-        setChange(!change);
-      });
+      axios
+        .delete(`http://localhost:4002/category/${id}`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res);
+          setChange(!change);
+        });
     } catch (err) {
       console.log(err);
     }
@@ -62,7 +72,8 @@ const CategoryContextApi = ({ children }: Props) => {
       axios
         .patch(
           `http://localhost:4002/category/${currentCategory[0].id}`,
-          values
+          values,
+          { withCredentials: true }
         )
         .then((res) => {
           console.log(res);

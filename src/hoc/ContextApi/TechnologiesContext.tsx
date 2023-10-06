@@ -26,11 +26,15 @@ const TechnologiesContextApi = ({ children }: Props) => {
 
   const postTechnologies = (values: { name: string }, resetform: any) => {
     try {
-      axios.post(`http://localhost:4002/technology/`, values).then((res) => {
-        setChange(!change);
-        console.log(res);
-        resetform();
-      });
+      axios
+        .post(`http://localhost:4002/technology/`, values, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          setChange(!change);
+          console.log(res);
+          resetform();
+        });
     } catch (error) {
       console.log(error);
     }
@@ -50,10 +54,14 @@ const TechnologiesContextApi = ({ children }: Props) => {
 
   const deleteTechnologies = (id: number) => {
     try {
-      axios.delete(`http://localhost:4002/technology/${id}`).then((res) => {
-        console.log(res);
-        setChange(!change);
-      });
+      axios
+        .delete(`http://localhost:4002/technology/${id}`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res);
+          setChange(!change);
+        });
     } catch (err) {
       console.log(err);
     }
@@ -68,7 +76,8 @@ const TechnologiesContextApi = ({ children }: Props) => {
       axios
         .patch(
           `http://localhost:4002/technology/${currentTechnologies[0].id}`,
-          values
+          values,
+          { withCredentials: true }
         )
         .then((res) => {
           console.log(res);

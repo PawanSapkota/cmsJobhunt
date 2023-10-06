@@ -9,17 +9,7 @@ import { LocationContext } from "@/hoc/ContextApi/LocationContext";
 import { TechnologiesContext } from "@/hoc/ContextApi/TechnologiesContext";
 import { CategoryContext } from "@/hoc/ContextApi/CategoryContext";
 
-const schema = yup.object().shape({
-  Job_title: yup.string().required("Job Title is required."),
-  Job_code: yup.string().required("Job_code is required."),
-  Date_posted: yup.date().required("Date Posted is required."),
-  Categories: yup.string().required(" Categories is required."),
-  Company: yup.string().required("Company  is required."),
-  Job_Description: yup.string().required("Job Description  is required."),
-  Salary_range: yup.string().required("Salary_range  is required."),
-  Location: yup.string().required("  Location is required."),
-  Expiry_date: yup.date().required("  Expiry Date is required."),
-});
+
 
 const salaryData = [
   {
@@ -57,17 +47,21 @@ const AddJob = () => {
       </Link>
       <Formik
         initialValues={{
-          Job_title: "",
-          Job_code: "",
-          Salary_range: "",
-          Job_Description: "",
-          Location: "",
-          Company: "",
-          Categories: "",
-          Date_posted: "",
-          Expiry_date: "",
+          job_name: "",
+          job_phone: "",
+          job_email: "",
+          date_posted: "",
+          company_name: "",
+          salary_range: "",
+          description: "",
+          deadline_date: "",
+          locations: "",
+          benefits: "",
+          technologies: "",
+          skills: "",
+          jobtype: "",
+          experience: "",
         }}
-        validationSchema={schema}
         onSubmit={(Values, { resetForm }) => {
           console.log(Values);
           resetForm();
@@ -82,30 +76,30 @@ const AddJob = () => {
               {/* <label className=" font-bold text-2xl text-center   ">Form</label> */}
               <div className="  grid grid-cols-2 gap-4 ">
                 <div className="flex flex-col gap-1">
-                  <label className="font-semibold">Enter Job Title</label>
+                  <label className="font-semibold">Enter Job Name</label>
                   <Field
                     type="text"
                     className="p-2 border w-full  outline-none  rounded "
                     placeholder=""
-                    name="Job_title"
+                    name="job_name"
                   />
                   <ErrorMessage
                     className="text-red-500"
-                    name="Job_title"
+                    name="job_name"
                     component={"div"}
                   />
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="font-semibold ">Enter Job Code</label>
+                  <label className="font-semibold ">Enter Job Phone</label>
                   <Field
                     type="text"
                     className="p-2  border w-full  outline-none  rounded "
                     placeholder=""
-                    name="Job_code"
+                    name="job_phone"
                   />
                   <ErrorMessage
                     className="text-red-500"
-                    name="Job_code"
+                    name="job_phone"
                     component={"div"}
                   />
                 </div>
@@ -116,11 +110,11 @@ const AddJob = () => {
                     type="date"
                     className="p-2  border w-full  outline-none  rounded "
                     placeholder=""
-                    name="Date_posted"
+                    name="date_posted"
                   />
                   <ErrorMessage
                     className="text-red-500"
-                    name="Date_posted"
+                    name="date_posted"
                     component={"div"}
                   />
                 </div>
@@ -130,11 +124,53 @@ const AddJob = () => {
                     type="text"
                     className="p-2  border w-full  outline-none  rounded "
                     placeholder=" "
-                    name="Company"
+                    name="company_name"
                   />
                   <ErrorMessage
                     className="text-red-500"
-                    name="Company"
+                    name="company_name"
+                    component={"div"}
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="font-semibold ">Enter Company Email</label>
+                  <Field
+                    type="text"
+                    className="p-2  border w-full  outline-none  rounded "
+                    placeholder=" "
+                    name="company_email"
+                  />
+                  <ErrorMessage
+                    className="text-red-500"
+                    name="company_email"
+                    component={"div"}
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="font-semibold ">Enter Skills</label>
+                  <Field
+                    type="text"
+                    className="p-2  border w-full  outline-none  rounded "
+                    placeholder=" "
+                    name="skills"
+                  />
+                  <ErrorMessage
+                    className="text-red-500"
+                    name="skills"
+                    component={"div"}
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="font-semibold ">Enter Technology</label>
+                  <Field
+                    type="text"
+                    className="p-2  border w-full  outline-none  rounded "
+                    placeholder=" "
+                    name="technologies"
+                  />
+                  <ErrorMessage
+                    className="text-red-500"
+                    name="technologies"
                     component={"div"}
                   />
                 </div>
@@ -144,7 +180,7 @@ const AddJob = () => {
                     as="select"
                     className="p-2  border w-full  outline-none  rounded "
                     placeholder=""
-                    name="Salary_range"
+                    name="salary_range"
                   >
                     <option value={""}>----</option>
                     {salaryData.map((val, i) => {
@@ -153,7 +189,7 @@ const AddJob = () => {
                   </Field>
                   <ErrorMessage
                     className="text-red-500"
-                    name="Salary_range"
+                    name="salary_range"
                     component={"div"}
                   />
                 </div>
@@ -164,7 +200,7 @@ const AddJob = () => {
                     type="text"
                     className="p-2  border w-full  outline-none  rounded "
                     placeholder=""
-                    name="Categories"
+                    name="categories"
                   >
                     <option value={""}>----</option>
                     {tableRenderCategory.map((val, i) => {
@@ -173,7 +209,7 @@ const AddJob = () => {
                   </Field>
                   <ErrorMessage
                     className="text-red-500"
-                    name="Categories"
+                    name="categories"
                     component={"div"}
                   />
                 </div>
@@ -184,7 +220,7 @@ const AddJob = () => {
                     type="text"
                     className="p-2  border w-full  outline-none  rounded "
                     placeholder=""
-                    name="Location"
+                    name="locations"
                   >
                     <option value={""}>----</option>
                     {tableRenderLocation.map((val, i) => {
@@ -193,21 +229,21 @@ const AddJob = () => {
                   </Field>
                   <ErrorMessage
                     className="text-red-500"
-                    name="Location"
+                    name="locations"
                     component={"div"}
                   />
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="font-semibold ">Enter Expiry Date</label>
+                  <label className="font-semibold ">Enter Deadline Date</label>
                   <Field
                     type="date"
                     className="p-2  border w-full  outline-none  rounded "
                     placeholder=""
-                    name="Expiry_date"
+                    name="deadline_date"
                   />
                   <ErrorMessage
                     className="text-red-500"
-                    name="Expiry_date"
+                    name="deadline_date"
                     component={"div"}
                   />
                 </div>

@@ -35,6 +35,10 @@ export const Navdata = [
     title: "Company",
     path: "/company",
   },
+  {
+    title: "Benefit",
+    path: "/benefit",
+  },
   // {
   //   title: "Login",
   //   path: "/login",
