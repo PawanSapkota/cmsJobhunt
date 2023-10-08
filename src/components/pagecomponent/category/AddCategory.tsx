@@ -10,6 +10,7 @@ const AddCategory = () => {
   return (
     <CategoryContext.Consumer>
       {({ postCategory }) => {
+        console.log(postCategory);
         return (
           <div>
             <Formik

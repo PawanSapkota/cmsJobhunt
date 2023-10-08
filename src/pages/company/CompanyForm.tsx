@@ -77,6 +77,7 @@ const CompanyForm = ({}) => {
   return (
     <CompanyContext.Consumer>
       {({ postCompany }) => {
+        console.log(postCompany);
         return (
           <div className="w-10/12 mx-auto">
             <Formik
@@ -91,13 +92,10 @@ const CompanyForm = ({}) => {
                 total_employee: "",
                 locations: [],
                 benefits: [],
-                job_name: "",
-                jobtypes: "",
                 categories: [],
                 description: "",
                 technologies: [],
-                image: null,
-               
+                image: "",
               }}
               // validationSchema={schema}
               onSubmit={(values: any, { resetForm }) => {
@@ -129,8 +127,6 @@ const CompanyForm = ({}) => {
                 formdata.append("company_email", values.company_email);
                 formdata.append("establish_date", values.establish_date);
                 formdata.append("total_employee", values.total_employee);
-                formdata.append("job_name", values.job_name);
-                formdata.append("jobtypes", values.jobtypes);
                 formdata.append("description", values.description);
 
                 formdata.append("technologies", JSON.stringify(techdata));
@@ -142,7 +138,7 @@ const CompanyForm = ({}) => {
                 // values.locations = locationdata;
                 // values.categories = categorydata;
                 // values.benefits = benefitsdata;
-                postCompany(values, resetForm);
+                postCompany(formdata, resetForm);
                 // resetForm();
               }}
             >
@@ -272,7 +268,7 @@ const CompanyForm = ({}) => {
                         />
                       </div>
 
-                      <div>
+                      {/* <div>
                         <label className="font-semibold mb-2">
                           Enter Job Name
                         </label>
@@ -287,9 +283,9 @@ const CompanyForm = ({}) => {
                           name="job_name"
                           component={"div"}
                         />
-                      </div>
+                      </div> */}
 
-                      <div>
+                      {/* <div>
                         <label className="font-semibold mb-2">
                           Enter Job Types
                         </label>
@@ -304,7 +300,7 @@ const CompanyForm = ({}) => {
                           name="jobtypes"
                           component={"div"}
                         />
-                      </div>
+                      </div> */}
 
                       <div>
                         <label className="font-semibold mb-2">
@@ -690,13 +686,13 @@ const CompanyForm = ({}) => {
                         />
                       </div>
 
-                     
                       <div>
                         <label className="font-semibold">Description</label>
                         <ReactQuill
                           theme="snow"
                           formats={formats}
                           className="w-full h-32 "
+                          value={values.description}
                         />
                       </div>
 
