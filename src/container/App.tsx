@@ -1,6 +1,7 @@
 import Login from "@/components/pagecomponent/login/Login";
 import Registration from "@/components/pagecomponent/login/Registration";
 import Layout from "@/hoc/Layout";
+import ProtectedRoute from "@/hoc/ProtectedRoute";
 import Benefit from "@/pages/benefit/Benefit";
 import Category from "@/pages/category/Category";
 import Company from "@/pages/company/Company";
@@ -18,18 +19,20 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/category" element={<Category />} />
-          <Route path="/skill" element={<Skill />} />
-          <Route path="/jobtype" element={<JobType />} />
-          <Route path="/technologies" element={<Technologies />} />
-          <Route path="/location" element={<Location />} />
-          <Route path="/job" element={<Job />} />
-          <Route path="/company" element={<Company />} />
-          <Route path="/alljobs" element={<ViewAllJobs />} />
-          <Route path="/benefit" element={<Benefit />} />
-          <Route path="/company" element={<Company />} />
+        <Route element={<ProtectedRoute />}>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/category" element={<Category />} />
+            <Route path="/skill" element={<Skill />} />
+            <Route path="/jobtype" element={<JobType />} />
+            <Route path="/technologies" element={<Technologies />} />
+            <Route path="/location" element={<Location />} />
+            <Route path="/job" element={<Job />} />
+            <Route path="/company" element={<Company />} />
+            <Route path="/alljobs" element={<ViewAllJobs />} />
+            <Route path="/benefit" element={<Benefit />} />
+            <Route path="/company" element={<Company />} />
+          </Route>
         </Route>
 
         <Route path="/login" element={<Login />} />

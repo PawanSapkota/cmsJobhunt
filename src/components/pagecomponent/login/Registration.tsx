@@ -1,5 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import axios from "axios";
+import axios from "../../../hoc/CustomAxios";
 import * as yup from "yup";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +33,7 @@ const Registration = () => {
                 console.log(Values);
                 try {
                   axios
-                    .post(`http://localhost:4002/auth`, Values)
+                    .post(`/auth`, Values)
                     .then((res) => {
                       console.log(res);
                       navigate("/login");

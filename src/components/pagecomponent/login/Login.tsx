@@ -1,9 +1,24 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import axios from "../../../hoc/CustomAxios"
 import * as yup from "yup";
+import { useEffect } from "react";
+import Cookies from "js-cookie";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userToken = Cookies.get("token");
+    console.log(userToken);
+    if (userToken) {
+      navigate("/", {
+        replace: true,
+      });
+    }
+  }, []);
+
   const schema = yup.object().shape({
     email: yup.string().required("Email is required."),
     // role: yup.string().required("Role is Required."),
@@ -11,7 +26,6 @@ const Login = () => {
     company_code: yup.string().required("Company Code is Required."),
   });
 
-  const navigate = useNavigate();
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -25,21 +39,24 @@ const Login = () => {
               initialValues={{
                 email: "",
                 password: "",
-                company_code: "",
-                role: "",
+                // company_code: "",
+                // role: "",
               }}
               validationSchema={schema}
               onSubmit={(Values, { resetForm }) => {
                 console.log(Values);
                 try {
                   axios
-                    .post(`http://localhost:4002/auth/login`, Values, {
+                    .post(`/auth/login`, Values, {
                       withCredentials: true,
                     })
                     .then((res) => {
                       console.log(res);
                       navigate("/");
+                      console.log(res.data.token)                       
+                      
                       localStorage.setItem("token", res.data.token);
+                      console.log(res.data.token)
                       resetForm();
                     })
                     .catch((err) => console.log(err));
@@ -87,7 +104,7 @@ const Login = () => {
                       />
                     </div>
 
-                    <div>
+                    {/* <div>
                       <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Role
                       </label>
@@ -102,25 +119,10 @@ const Login = () => {
                         name="role"
                         component={"div"}
                       />
-                    </div>
-
-                    {/* <div className="mt-4">
-                      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Role
-                      </label>
-                      <Field
-                        type="text"
-                        name="role"
-                        placeholder=""
-                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      />
-                      <ErrorMessage
-                        className="text-red-500"
-                        name="role"
-                        component={"div"}
-                      />
                     </div> */}
-                    <div className="mt-4">
+
+                    
+                    {/* <div className="mt-4">
                       <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Company Code
                       </label>
@@ -135,7 +137,7 @@ const Login = () => {
                         name="company_code"
                         component={"div"}
                       />
-                    </div>
+                    </div> */}
 
                     <button
                       type="submit"
