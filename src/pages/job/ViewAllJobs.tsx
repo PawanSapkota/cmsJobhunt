@@ -73,7 +73,13 @@ const ViewAllJobs = () => {
                           )}
                         </td>
                         <td className="border-b p-4 pb-2 text-sm">
-                          {(() => {
+                          {new Date(val.date_posted).toLocaleString("default", {
+                            year: "numeric",
+                            month: "short",
+                            day: "2-digit",
+                            weekday: "short",
+                          })}
+                          {/* {(() => {
                             const date = new Date(val.date_posted);
                             const year = date.getFullYear().toString();
                             const month = (date.getMonth() + 1)
@@ -86,7 +92,7 @@ const ViewAllJobs = () => {
                               .padStart(2, "0");
 
                             return `${year}-${month}-${day}`;
-                          })()}
+                          })()} */}
                         </td>
                         <td className="border-b p-4 pb-2 text-sm">
                           {val.deadline_date}
