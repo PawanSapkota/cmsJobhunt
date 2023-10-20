@@ -62,10 +62,7 @@ const Login = () => {
             >
               {({ handleSubmit }) => {
                 return (
-                  <Form
-                    onSubmit={handleSubmit}
-                    // className="mt-4 flex flex-col gap-4 w-full mx-auto  p-6 shadow-gray-400 bg-white "
-                  >
+                  <Form onSubmit={handleSubmit}>
                     <div>
                       <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Email
